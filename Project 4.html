@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Project 4</title>
+    <style type="text/css">
+    </style>
+</head>
+<body onload="game()">
+<p id=error></p>
+<script>
+
+try {
+    //Step 1: Create an array of HTML colors
+    var colors = ["Blue", "Purple", "Red", "Gray", "Green", "Yellow", "Orange", "Brown", "Pink", "Black"];
+
+    //Step 2: Use a random number generator to pick one of the above colors.
+    var random = colors[Math.floor(Math.random() * colors.length)];
+
+    var guesses = 0;
+
+
+    function game() {
+
+        //Step 3: Prompt the user for a color choice (i.e. like in the assignment document
+        var color = prompt('I am thinking of these colors:\n' +
+                'Black, Blue, Brown, Gray, Green, Orange, Pink, Purple, Red, Yellow. \n'
+                + 'What color am I thinking of?');
+        check_guess();
+
+        function check_guess() {
+
+            guesses += 1;
+            //Step 4: Compare the "User choice" in Step 3 to the "Computer choice" from Step 2
+
+            //Step 5: Create an IF statement:
+
+            //"User choice" == "Computer choice"
+
+            if (color == random) {
+                document.body.style.backgroundColor = random;
+                alert('Success! \n Number of guesses: ' + guesses);
+            }
+
+            //"User choice" is alphabetically < "Computer choice"
+            if (color < random) {
+                alert('My color is alphabetically higher. \n Try Again.');
+                game();
+            }
+
+            //"User choice" is alphabetically > "Computer choice"
+            if (color > random) {
+                alert('My color is alphabetically lower. \n Try Again.');
+                game();
+            }
+        }
+    }
+}
+catch(err){
+    document.getElementById("error").innerHTML = err.message;
+}
+    // 1. Remove case sensitivity
+    // 2. Alert user for invalid input
+</script>
+</body>
+</html>
